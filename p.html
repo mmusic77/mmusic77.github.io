@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>플리</title></head>
+<body style="font-family:sans-serif;text-align:center;padding:48px 16px;background:#111;color:#eee">
+<p>유튜브 앱 여는 중…</p>
+<p><a id="a" style="display:inline-block;padding:14px 22px;background:#f00;color:#fff;border-radius:10px;text-decoration:none;font-size:18px">▶ 유튜브 앱에서 열기</a></p>
+<script>
+var ids=(new URLSearchParams(location.search).get('ids')||'').split(',').filter(Boolean).join(',');
+var path='www.youtube.com/watch_videos?video_ids='+ids;
+var web='https://'+path;
+var ua=navigator.userAgent;
+var href=/android/i.test(ua)?'intent://'+path+'#Intent;scheme=https;package=com.google.android.youtube;S.browser_fallback_url='+encodeURIComponent(web)+';end'
+ :(/iphone|ipad/i.test(ua)?'youtube://'+path:web);
+document.getElementById('a').href=href;
+location.href=href;
+</script>
+</body></html>
