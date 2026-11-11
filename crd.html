@@ -13,14 +13,23 @@ p{color:#aaa;font-size:14px}
 <body>
 <div>
 <a id="go" href="#">크롬 원격 데스크톱 앱 열기</a>
-<p>자동으로 안 열리면 위 버튼을 누르세요.</p>
+<p id="msg">앱 여는 중… 안 열리면 위 버튼을 누르세요.</p>
 </div>
 <script>
-// 안드로이드: 크롬 원격 데스크톱 앱을 바로 연다. 앱이 없으면 웹 접속 화면으로.
+// 1) 카톡 안 창이면 기본 브라우저(크롬)로 빼낸다. 2) 크롬에서 크롬 원격 데스크톱 앱을 연다.
+var ua = navigator.userAgent;
 var fb = encodeURIComponent('https://remotedesktop.google.com/access');
 var app = 'intent://#Intent;package=com.google.chromeremotedesktop;action=android.intent.action.MAIN;category=android.intent.category.LAUNCHER;S.browser_fallback_url=' + fb + ';end';
-document.getElementById('go').href = app;
-location.href = app;
+var a = document.getElementById('go');
+if (/KAKAOTALK/i.test(ua)) {
+  var out = 'kakaotalk://web/openExternal?url=' + encodeURIComponent(location.href);
+  a.href = out;
+  a.textContent = '크롬에서 열기';
+  location.href = out;
+} else {
+  a.href = app;
+  location.href = app;
+}
 </script>
 </body>
 </html>
