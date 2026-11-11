@@ -6,30 +6,20 @@
 <title>크롬 원격 열기</title>
 <style>
 body{margin:0;font-family:sans-serif;background:#111;color:#eee;display:flex;min-height:100vh;align-items:center;justify-content:center;text-align:center}
-a{display:block;margin:14px 16px;padding:20px 24px;border-radius:14px;background:#1a73e8;color:#fff;font-size:19px;text-decoration:none}
-a.b{background:#0b8043}a.c{background:#555}
+a{display:block;margin:16px;padding:24px 28px;border-radius:14px;background:#1a73e8;color:#fff;font-size:21px;text-decoration:none}
 p{color:#aaa;font-size:14px}
 </style>
 </head>
 <body>
 <div>
-<a id="A" href="#">A 크롬 원격 앱 열기</a>
-<a id="B" class="b" href="#">B 크롬 원격 앱 열기(주소 방식)</a>
-<a id="C" class="c" href="https://remotedesktop.google.com/access">C 그냥 링크</a>
-<p>A부터 눌러 보고, 안 되면 B, C 순서로.</p>
+<a href="https://remotedesktop.google.com/access">크롬 원격 데스크톱 앱 열기</a>
+<p>자동으로 안 열리면 위 버튼을 누르세요.</p>
 </div>
 <script>
-// 카톡 안 창이면 크롬으로 빼낸다. 크롬에서는 앱 열기를 시도한다(시험판: 버튼 3가지).
-var ua = navigator.userAgent;
-var pkg = 'com.google.chromeremotedesktop';
-var A = 'intent://#Intent;package=' + pkg + ';action=android.intent.action.MAIN;category=android.intent.category.LAUNCHER;end';
-var B = 'intent://remotedesktop.google.com/access#Intent;scheme=https;package=' + pkg + ';end';
-document.getElementById('A').href = A;
-document.getElementById('B').href = B;
-if (/KAKAOTALK/i.test(ua)) {
-  location.href = 'kakaotalk://web/openExternal?url=' + encodeURIComponent(location.href);
-} else if (/android/i.test(ua)) {
-  location.href = A;
+// 수노 사람 확인창 알림용. 카톡 안 창에서는 크롬 원격 주소를 바깥(안드로이드)으로 넘겨 앱이 받게 한다.
+// 크롬에서는 버튼(일반 링크)을 누르면 앱으로 열린다(11-11 시험 확인).
+if (/KAKAOTALK/i.test(navigator.userAgent)) {
+  location.href = 'kakaotalk://web/openExternal?url=' + encodeURIComponent('https://remotedesktop.google.com/access');
 }
 </script>
 </body>
