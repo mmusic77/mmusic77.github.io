@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>크롬 원격 열기</title>
+<style>
+body{margin:0;font-family:sans-serif;background:#111;color:#eee;display:flex;min-height:100vh;align-items:center;justify-content:center;text-align:center}
+a{display:block;margin:16px;padding:22px 28px;border-radius:14px;background:#1a73e8;color:#fff;font-size:20px;text-decoration:none}
+p{color:#aaa;font-size:14px}
+</style>
+</head>
+<body>
+<div>
+<a id="go" href="#">크롬 원격 데스크톱 앱 열기</a>
+<p>자동으로 안 열리면 위 버튼을 누르세요.</p>
+</div>
+<script>
+// 안드로이드: 크롬 원격 데스크톱 앱을 바로 연다. 앱이 없으면 웹 접속 화면으로.
+var fb = encodeURIComponent('https://remotedesktop.google.com/access');
+var app = 'intent://#Intent;package=com.google.chromeremotedesktop;action=android.intent.action.MAIN;category=android.intent.category.LAUNCHER;S.browser_fallback_url=' + fb + ';end';
+document.getElementById('go').href = app;
+location.href = app;
+</script>
+</body>
+</html>
